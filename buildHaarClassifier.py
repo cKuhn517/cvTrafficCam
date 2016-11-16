@@ -1,3 +1,16 @@
+######################################################
+
+##  buildHaarClassifier.py
+
+##  Provides code and outlines manual steps required
+##  for obtaining training material and training a
+##  Haar classifier with OpenCV for python.
+
+__version__   = "0.1"
+__status__    = "Development"
+
+######################################################
+
 import urllib
 import cv2
 import numpy as np
@@ -24,8 +37,13 @@ def store_raw_images(images_link, folder):
         except Exception as e:
             print(str(e))
 
+# The URLs can be obtained by searching for a desired item to train for at
+# image-net.org and something else to use as negative examples.  Here I am
+# training for cars with people as the negative examples.
+
 #store_raw_images('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n07942152',
 #                 'neg')
+
 #store_raw_images('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02958343',
 #                 'pos')
 
@@ -76,10 +94,15 @@ def create_pos_n_neg():
 
 # In command line create vector file of positive samples with:
 # opencv_createsamples -info info.lst -num 869 -w 20 -h 20 -vec positives.vec
+
 # This takes the list of examples, count of them, width and height of samples, and the output name
 
 # Now train the cascade with our samples and the vector file in the command line with:
+# NOTE: This takes a long time on a pi.  I recommend something more powerful, then
+#       you can increase the size used (the -w and -h) and get better results.
+
 # opencv_traincascade -data data -vec positives.vec -bg bg.txt -numPos 800 -numNeg 900 -numStages 10 -w 20 -h 20
+
 # Insufficient memory on Pi, used the following to create a larger swap file:
 # sudo dd if=/dev/zero of=/var/swap2 bs=1024 count=1572864
 # sudo mkswap /var/swap2
