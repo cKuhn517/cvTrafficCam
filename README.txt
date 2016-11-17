@@ -3,7 +3,7 @@ Computer Vision Traffic Camera Project
 --------------------------------------
 
 Author:   Chris Kuhn
-Location: https://github.com/cKuhn517/TrafficCam.git
+Location: https://github.com/cKuhn517/cvTrafficCam.git
 
 This is a simple project for detecting vehicles in a video stream and recording 
 traffic and parking conditions during the day.  This information will be used 
